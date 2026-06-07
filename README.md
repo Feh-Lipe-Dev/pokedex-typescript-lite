@@ -2,7 +2,9 @@
 
 ## Sobre o projeto
 
-O **Pokédex TypeScript Lite** é uma aplicação back-end simples em Node.js com TypeScript, executada pelo terminal, que consulta dados de Pokémon na [PokeAPI](https://pokeapi.co/) e organiza os resultados em um catálogo local durante a execução do programa. Os dados do catálogo são persistidos no arquivo `pc_box.json`.
+O **Pokédex TypeScript Lite** é uma aplicação back-end simples em Node.js com TypeScript, executada pelo terminal, que consulta dados de Pokémon na [PokeAPI](https://pokeapi.co/) e organiza os resultados em um catálogo local durante a execução do programa.  
+
+O projeto faz parte da atividade "Mini Projeto Avaliativo - apiPokedex", do curso técnico Desenvolvimento web: back-end com node.js. O curso faz parte do projeto [SCTEC](https://sctec.scti.sc.gov.br/), parceria do governo do estado de Santa Catarina com a instituição de ensino [Sesi/Senai](https://cursos.sesisenai.org.br/), também de Santa Catarina. O objetivo é praticar os principais conceitos do módulo 01, como integração com APIs, tratamento de erros, manipulação de arrays, classes e TypeScript.
 
 ---
 
@@ -42,7 +44,7 @@ Antes de executar o projeto, é necessário ter instalado:
 
 - [Node.js](https://nodejs.org/) (versão 18 ou superior)
 - npm (já incluído com o Node.js)
-- Git
+- [Git](https://git-scm.com/) (para clonar o repositório)
 
 ---
 
@@ -51,7 +53,7 @@ Antes de executar o projeto, é necessário ter instalado:
 Clone o repositório:
 
 ```bash
-git clone LINK_DO_REPOSITORIO
+git https://github.com/Feh-Lipe-Dev/pokedex-typescript-lite
 ```
 
 Acesse a pasta do projeto:
@@ -70,13 +72,7 @@ npm install
 
 ## Como executar
 
-Execute o projeto em ambiente de desenvolvimento (usando `tsx`):
-
-```bash
-npm run dev
-```
-
-Para compilar o TypeScript para JavaScript e executar o build:
+Compilar o TypeScript para JavaScript e executar o build:
 
 ```bash
 npm run build
@@ -97,8 +93,7 @@ pokedex-typescript-lite/
 │   │   └── TerminalController.ts    # Classe CatalogoPokemon — gerencia o catálogo em memória
 │   │
 │   ├── services/
-│   │   ├── PokeApiService.ts        # Integração com a PokeAPI via fetch nativo
-│   │   └── BoxService.ts            # Persistência local usando node:fs/promises
+│   │   └── PokeApiService.ts        # Integração com a PokeAPI via fetch nativo  
 │   │
 │   ├── models/
 │   │   ├── Pokemon.ts               # Interfaces PokemonResumo e PokemonApiResponse
@@ -107,7 +102,6 @@ pokedex-typescript-lite/
 │   └── utils/
 │       └── textFormatters.ts        # Funções utilitárias puras para formatação de mensagens
 │
-├── pc_box.json                      # Banco de dados local em JSON (array de Pokémon)
 ├── tsconfig.json                    # Configuração do compilador TypeScript (Strict Mode)
 ├── package.json                     # Manifesto com scripts e devDependencies
 └── README.md
