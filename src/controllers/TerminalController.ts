@@ -39,7 +39,7 @@ export class CatalogoPokemon {
     const existe = this.pokemons.some((pokemon) => pokemon.id === id);
 
     if (!existe) {
-      console.log(formatarMensagemAviso("[AVISO] Nenhum Pokémon encontrado com esse ID."));
+      console.log(formatarMensagemAviso("Nenhum Pokémon encontrado com esse ID."));
       return;
     }
 

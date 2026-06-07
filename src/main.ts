@@ -14,7 +14,7 @@ async function main() {
     let nomeOuId = "pikachu";
     const pokemon = await buscarPokemon(nomeOuId);
     console.log(pokemon); // Saída do Pokémon encontrado (objeto PokemonResumo)
-    nomeOuId = "9999";
+    nomeOuId = "pokemon-inexistente";
     const pokemonInexistente = await buscarPokemon(nomeOuId);
     console.log(pokemonInexistente); // Saída null, pois o Pokémon não existe
 
@@ -46,9 +46,8 @@ async function main() {
         catalogo.adicionar(pikachu);
     }
 
-    const zapdos = await buscarPokemon("zapdos");
-    if (zapdos !== null) {
-        catalogo.adicionar(zapdos);
+    if (pokemonInexistente !== null) {
+        catalogo.adicionar(pokemonInexistente);
     }
 
     // Listar Pokémon no catálogo
@@ -56,6 +55,9 @@ async function main() {
 
     // Remover um Pokémon do catálogo
     catalogo.remover(25); // Remover o Pikachu (ID 25)
+
+    // Remover um Pokémon que não existe no catálogo
+    catalogo.remover(999); // ID inexistente
 
     // Listar novamente para verificar a remoção
     catalogo.listar();
@@ -86,6 +88,8 @@ async function main() {
 
     // Exibir estatísticas do catálogo
     catalogo.exibirEstatisticas();
+
+    console.log("*execução finalizada.");
 }
 
 main();     

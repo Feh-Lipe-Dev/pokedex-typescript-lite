@@ -83,7 +83,7 @@ npm start
 
 ## Estrutura do projeto
 
-```
+```shell
 pokedex-typescript-lite/
 │
 ├── src/
@@ -114,12 +114,10 @@ pokedex-typescript-lite/
 - Buscar Pokémon por nome ou ID via PokeAPI;
 - Tratar erro de Pokémon inexistente sem interromper a aplicação;
 - Transformar resposta da API em objeto simplificado (`PokemonResumo`);
-- Adicionar Pokémon ao catálogo local em memória;
 - Impedir registro duplicado pelo `id`;
 - Listar todos os Pokémon do catálogo com formatação clara;
 - Remover Pokémon do catálogo pelo ID;
 - Exibir estatísticas (peso total, média de peso, validação de nomes);
-- Salvar e carregar o catálogo no arquivo `pc_box.json`;
 - Exibir mensagens claras e padronizadas no terminal (`[OK]`, `[ERRO]`, `[AVISO]`).
 
 ---
@@ -128,20 +126,31 @@ pokedex-typescript-lite/
 
 ### Busca válida
 
-Entrada testada:
-```
+Entradas testadas:
+
+```shel
 pikachu
+charmander
+bulbasaur
 ```
 
-Saída obtida:
-```
+Saídas obtidas:
+
+```shell
 [OK] Pokémon encontrado: pikachu
 [OK] pikachu adicionado ao catálogo.
+[OK] Pokémon encontrado: charmander
+[OK] charmander adicionado ao catálogo.
+[OK] Pokémon encontrado: bulbasaur
+[OK] bulbasaur adicionado ao catálogo.
 ```
 
 Listagem:
-```
+
+```shell
 #25 - pikachu | Tipos: electric | Altura: 4 | Peso: 60
+#4 - charmander | Tipos: fire | Altura: 6 | Peso: 85
+#1 - bulbasaur | Tipos: grass, poison | Altura: 7 | Peso: 69
 ```
 
 ---
@@ -149,12 +158,14 @@ Listagem:
 ### Busca inválida
 
 Entrada testada:
-```
+
+```shell
 pokemon-inexistente
 ```
 
 Saída obtida:
-```
+
+```shell
 [ERRO] Pokémon não encontrado: pokemon-inexistente
 ```
 
@@ -163,14 +174,15 @@ Saída obtida:
 ### Duplicidade
 
 Entrada testada:
-```
-adicionar pikachu duas vezes
+
+```shell
+charmander
 ```
 
 Saída obtida:
-```
-[OK] pikachu adicionado ao catálogo.
-[AVISO] pikachu já está no catálogo.
+
+```shell
+[AVISO] charmander já está no catálogo.
 ```
 
 ---
@@ -178,17 +190,20 @@ Saída obtida:
 ### Remoção
 
 Entrada testada:
-```
+
+```shell
 remover ID 25
 ```
 
 Saída obtida:
-```
-[OK] Pokémon removido do catálogo.
+
+```shell
+[OK] pikachu removido do catálogo.
 ```
 
 Caso não exista:
-```
+
+```shell
 [AVISO] Nenhum Pokémon encontrado com esse ID.
 ```
 
@@ -196,62 +211,69 @@ Caso não exista:
 
 ### Saída completa do terminal (exemplo real)
 
-```
-========================================
-       Pokédex TypeScript Lite          
-========================================
+```shell
+.........................
+ POKEMON TYPESCRIPT LITE
+'''''''''''''''''''''''''
+ == Buscando Pokémon por nome ou ID ==
+'''''''''''''''''''''''''''''''''''''''''''''''''
 
---- Buscando Pokémon na PokeAPI ---
-
+[OK] Pokémon encontrado: pikachu
+{ id: 25, nome: 'pikachu', tipos: [ 'electric' ], altura: 4, peso: 60 }
+[ERRO] Pokémon não encontrado: pokemon-inexistente
+null
+ 
+CATÁLOGO DE POKÉMON
+''''''''''''''''''''''
 [OK] Pokémon encontrado: pikachu
 [OK] pikachu adicionado ao catálogo.
 [OK] Pokémon encontrado: charmander
 [OK] charmander adicionado ao catálogo.
 [OK] Pokémon encontrado: bulbasaur
 [OK] bulbasaur adicionado ao catálogo.
-
---- Testando duplicidade ---
-
-[OK] Pokémon encontrado: pikachu
 [AVISO] pikachu já está no catálogo.
-
---- Testando Pokémon inexistente ---
-
-[ERRO] Pokémon não encontrado: pokemon-inexistente
-
---- Listando catálogo completo ---
 
 Catálogo atual:
 #25 - pikachu | Tipos: electric | Altura: 4 | Peso: 60
 #4 - charmander | Tipos: fire | Altura: 6 | Peso: 85
 #1 - bulbasaur | Tipos: grass, poison | Altura: 7 | Peso: 69
 
---- Exibindo estatísticas ---
-
---- Estatísticas do Catálogo ---
-Total de Pokémon: 3
-Peso total: 214
-Média de peso: 71.33
-Todos têm nome válido: true
---------------------------------
-
---- Removendo pikachu (ID 25) do catálogo ---
-
-[OK] Pokémon removido do catálogo.
-
---- Catálogo após remoção ---
+[OK] pikachu removido do catálogo.
+[AVISO] Nenhum Pokémon encontrado com esse ID.
 
 Catálogo atual:
 #4 - charmander | Tipos: fire | Altura: 6 | Peso: 85
 #1 - bulbasaur | Tipos: grass, poison | Altura: 7 | Peso: 69
 
---- Salvando catálogo no pc_box.json ---
+Buscando Pokémon por ID...
+[OK] Pokémon encontrado: charmander
 
-[OK] Catálogo salvo com sucesso em pc_box.json.
+Verificando se todos os Pokémon têm nome...
+[OK] Todos os Pokémon têm nome.
 
-========================================
-           Execução concluída           
-========================================
+Calculando o peso total dos Pokémon no catálogo...
+[OK] Peso total dos Pokémon: 154 kg
+
+Obtendo todos os Pokémon do catálogo...
+[
+  { id: 4, nome: 'charmander', tipos: [ 'fire' ], altura: 6, peso: 85 },
+  {
+    id: 1,
+    nome: 'bulbasaur',
+    tipos: [ 'grass', 'poison' ],
+    altura: 7,
+    peso: 69
+  }
+]
+
+--- Estatísticas do Catálogo ---
+Total de Pokémon: 2
+Peso total: 154
+Média de peso: 77.00
+Todos têm nome válido: true
+--------------------------------
+
+*execução finalizada.
 ```
 
 ---
@@ -259,21 +281,27 @@ Catálogo atual:
 ## Conceitos aplicados
 
 ### TypeScript
+
 Todos os arquivos `.ts` usam tipagem estática. Parâmetros, retornos de funções e propriedades de objetos possuem tipos explícitos (`string`, `number`, `boolean`, arrays tipados e `Promise<T>`).
 
 ### Interface PokemonResumo
+
 Representa os dados simplificados do Pokémon extraídos da API. Contém: `id`, `nome`, `tipos`, `altura` e `peso`.
 
 ### Interface PokemonApiResponse
+
 Representa somente os campos relevantes do retorno bruto da PokeAPI usados no mapeamento.
 
 ### Fetch e async/await
+
 A função `buscarPokemon` em `PokeApiService.ts` usa `fetch` nativo do Node.js (>= 18), com `async/await` para aguardar a resposta e `.json()` para processar o corpo.
 
 ### Tratamento de erros
+
 Utiliza `try/catch` em toda requisição HTTP. Status 404 é tratado com aviso específico. Erros de rede ou inesperados são capturados e exibem mensagem amigável sem interromper a aplicação.
 
 ### Métodos de array utilizados
+
 | Método | Onde foi usado |
 |---|---|
 | `map` | Extrai os nomes dos tipos do array `types` da API |
@@ -285,7 +313,9 @@ Utiliza `try/catch` em toda requisição HTTP. Status 404 é tratado com aviso e
 | `reduce` | Calcula o peso total do catálogo |
 
 ### Classe CatalogoPokemon
+
 Localizada em `TerminalController.ts`. Possui:
+
 - Atributo privado `pokemons: PokemonResumo[]`
 - Método `adicionar(pokemon)` — com validação de duplicidade
 - Método `listar()` — exibe todos os Pokémon formatados
@@ -296,6 +326,7 @@ Localizada em `TerminalController.ts`. Possui:
 - Método `exibirEstatisticas()` — exibe resumo do catálogo
 
 ### Erros customizados
+
 `APIError` e `LocalBoxError` estendem a classe nativa `Error`, com nome e informações adicionais.
 
 ---
@@ -303,15 +334,6 @@ Localizada em `TerminalController.ts`. Possui:
 ## Organização do Kanban
 
 Link do Kanban: `COLE_AQUI_O_LINK`
-
----
-
-## Branches utilizadas
-
-- `main`
-- `develop`
-- `feat/pokedex`
-- `docs/readme`
 
 ---
 
