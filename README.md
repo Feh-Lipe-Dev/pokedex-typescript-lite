@@ -333,7 +333,7 @@ Localizada em `TerminalController.ts`. Possui:
 
 ## Organização do Kanban
 
-Link do Kanban: `COLE_AQUI_O_LINK`
+Link do Kanban: [Pokedex TS Lite Kanban - Trello](https://trello.com/b/3aTY45du/pokedex-typescript-lite)
 
 ---
 
