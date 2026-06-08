@@ -337,6 +337,12 @@ Link do Kanban: `COLE_AQUI_O_LINK`
 
 ---
 
+## Branches utilizadas
+
+- main
+
+---
+
 ## Melhorias futuras
 
 - Criar menu interativo no terminal com `readline`;
